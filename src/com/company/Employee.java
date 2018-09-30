@@ -3,7 +3,6 @@ package com.company;
 import com.company.model.PositionTitle;
 
 import java.text.NumberFormat;
-import java.util.logging.Formatter;
 
 public class Employee {
 
@@ -73,19 +72,24 @@ public class Employee {
         this.startDate = startDate;
     }
 
+    /* Calculate the amount of pay based on:
+     * the amount of hours worked,
+     * what shift your working in,
+     * how much overtime you've worked */
     public void Calculate(double hoursIn){
         double payModify = 0;
 
         if(shift == 2){
-            payModify = .05;
+            payModify = .05; // 5 percent if on second shift
         }
-        else if(shift == 3){
+        else if(shift == 3){ // 10 percent if on third shift
             payModify = .10;
         }
 
         double overtimeHours = 0;
         double normalHours = 0;
-        if(hoursIn > 40){
+
+        if(hoursIn > 40){ // Finds the amount of overtime hours worked
             normalHours = 40;
             overtimeHours = hoursIn - 40;
         }
@@ -93,6 +97,7 @@ public class Employee {
             normalHours = hoursIn;
         }
 
+        // Adds everything up and displays the total
         double modifiedPay = payRate + (payRate * payModify);
 
         double totalPay = 0;
@@ -105,10 +110,11 @@ public class Employee {
     }
 
     NumberFormat nf = NumberFormat.getCurrencyInstance();
+
     private void Display(double total){
         System.out.println("Name: " + name);
         System.out.println("Position: " + position);
-        System.out.println("Pay Rate: " + payRate);
+        System.out.println("Pay Rate: " + nf.format(payRate));
         System.out.println("This weeks earnings: " + nf.format(total));
         System.out.println("");
     }

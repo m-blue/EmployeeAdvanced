@@ -5,7 +5,6 @@ import com.company.model.PositionTitle;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
 
         Employee employee1 = new Employee("Jane Doe", PositionTitle.ADMINISTRATION,true,27.00,1,"March 3");
         employee1.Calculate(45);
